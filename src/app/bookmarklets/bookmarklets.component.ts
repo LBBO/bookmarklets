@@ -3,6 +3,7 @@ import { Bookmarklet, functionToBookmarkletUrl } from '../Bookmarklet'
 import { blackscreen } from '../../bookmarklets/blackscreen'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser'
 import { getChangeMediaSpeed } from '../../bookmarklets/mediaSpeed'
+import { wordCounter } from '../../bookmarklets/wordCounter'
 
 @Component({
   selector: 'app-bookmarklets',
@@ -21,6 +22,13 @@ export class BookmarkletsComponent {
       name: 'Blackscreen',
       description: 'This will turn the active window into a black screen',
       func: blackscreen,
+    },
+    {
+      name: 'Word counter',
+      description:
+        'Select some text on a website and then run this bookmarklet. It will tell you how many words are' +
+        ' included in your selection',
+      func: wordCounter,
     },
   ]
 
