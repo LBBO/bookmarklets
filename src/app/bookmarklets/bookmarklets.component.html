@@ -1,3 +1,7 @@
-<a *ngFor="let bookmarklet of bookmarkletsWithUrls" [href]="bookmarklet.url">
-  {{ bookmarklet.name }}
-</a>
+<div class="wrapper inverted">
+  <div class="card" *ngFor="let bookmarklet of bookmarkletsWithUrls">
+    <h2>{{ bookmarklet.name }}</h2>
+    <p>{{ bookmarklet.description }}</p>
+    <a class="inverted" [href]="bookmarklet.url">{{ bookmarklet.name }}</a>
+  </div>
+</div>

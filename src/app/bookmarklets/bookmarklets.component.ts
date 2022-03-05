@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { Bookmarklet, functionToBookmarkletUrl } from '../Bookmarklet'
 import { blackscreen } from '../../bookmarklets/blackscreen'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser'
+import { getChangeMediaSpeed } from '../../bookmarklets/mediaSpeed'
 
 @Component({
   selector: 'app-bookmarklets',
@@ -10,6 +11,12 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser'
 })
 export class BookmarkletsComponent {
   readonly bookmarklets: Bookmarklet[] = [
+    {
+      name: 'Change media speed',
+      description:
+        "This lets you change almost any video's or audio's playback speed in the entire internet",
+      func: getChangeMediaSpeed,
+    },
     {
       name: 'Blackscreen',
       description: 'This will turn the active window into a black screen',

@@ -1,1 +1,66 @@
-/* You can add global styles to this file, and also import other style files */
+@mixin light() {
+  --background: var(--mint-cream);
+  --font-color: var(--gunmetal);
+  --accent: var(--blue-ncs);
+}
+
+@mixin dark() {
+  --background: var(--gunmetal);
+  --font-color: var(--mint-cream);
+  --accent: var(--blue-dark);
+}
+
+:root {
+  // Names are given by coolors.co
+  // https://coolors.co/292f36-2e86ab-f7fff7-ff6b6b-ffe66d
+  --gunmetal: #292f36;
+  --light-gunmetal: #3d4751;
+  --blue-ncs: #9ed0e5;
+  --blue-dark: #113240;
+  --mint-cream: #f7fff7;
+  --bittersweet: #ff6b6b;
+  --yellow-crayola: #ffe66d;
+
+  @include dark();
+}
+
+.inverted {
+  @include light();
+
+  .inverted {
+    @include dark();
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    @include light();
+  }
+
+  .inverted {
+    @include dark();
+
+    .inverted {
+      @include light();
+    }
+  }
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+
+  background-color: var(--background);
+  color: var(--font-color);
+
+  font-family: Verdana, Arial, sans-serif;
+}
+
+a,
+a:focus,
+a:visited,
+a:active {
+  color: inherit;
+}
