@@ -1,0 +1,30 @@
+import { Component } from '@angular/core'
+import { Bookmarklet, functionToBookmarkletUrl } from '../Bookmarklet'
+import { blackscreen } from '../../bookmarklets/blackscreen'
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser'
+
+@Component({
+  selector: 'app-bookmarklets',
+  templateUrl: './bookmarklets.component.html',
+  styleUrls: ['./bookmarklets.component.scss'],
+})
+export class BookmarkletsComponent {
+  readonly bookmarklets: Bookmarklet[] = [
+    {
+      name: 'Blackscreen',
+      description: 'This will turn the active window into a black screen',
+      func: blackscreen,
+    },
+  ]
+
+  readonly bookmarkletsWithUrls: (Bookmarklet & { url: SafeUrl })[]
+
+  constructor(private sanitizer: DomSanitizer) {
+    this.bookmarkletsWithUrls = this.bookmarklets.map((bookmarklet) => ({
+      ...bookmarklet,
+      url: this.sanitizer.bypassSecurityTrustUrl(
+        functionToBookmarkletUrl(bookmarklet.func),
+      ),
+    }))
+  }
+}
